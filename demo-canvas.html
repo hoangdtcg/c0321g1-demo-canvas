@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo Canvas</title>
+</head>
+<style>
+  #myCanvas{
+    border: 1px solid black;
+    background-color: bisque;
+  }
+</style>
+<body>
+<canvas id="myCanvas" width="600px" height="400px"></canvas>
+<script>
+  let canvas = document.getElementById('myCanvas');
+  let pen = canvas.getContext('2d');
+
+/*  pen.beginPath();
+  pen.rect(200,100,80,50);
+  // pen.moveTo(10,10);
+  // pen.lineTo(100,20);
+  pen.strokeStyle = 'red';
+  pen.lineWidth = 6;
+  pen.stroke();
+  pen.fillStyle = 'green';
+  pen.fill();
+  pen.closePath();*/
+  let x = 0;
+  let y= 0;
+  let speedX = Math.random()*10;
+  let speedY = Math.random()*10;
+  function drawCircle() {
+      pen.beginPath();
+      pen.arc(x,y,25,0,2*Math.PI);
+      pen.strokeStyle = 'black';
+      pen.stroke();
+      pen.closePath();
+  }
+
+  drawCircle();
+  setInterval(main,20);
+
+  function main() {
+      pen.clearRect(0,0,canvas.width,canvas.height);
+      x+= speedX;
+      y+=speedY;
+      drawCircle();
+      if(x > 600 || x < 0) {
+          speedX = -speedX;
+      }
+
+      if(y > canvas.height || y < 0){
+          speedY = -speedY;
+      }
+  }
+
+  // clearInterval(run);
+
+
+
+</script>
+</body>
+</html>
